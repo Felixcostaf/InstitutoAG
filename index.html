@@ -1,0 +1,2265 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>Instituto AG — Dra. Andressa Gomes | Fisioterapia Ortopédica</title>
+    <meta name="description" content="Instituto AG — Fisioterapia Ortopédica de excelência com Dra. Andressa Gomes. Tratamentos personalizados para sua recuperação e bem-estar. CREFITO 356314-F.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --bg: #EFECE5;
+            --bg-alt: rgba(214, 208, 194, 0.2);
+            --text-primary: #292524;
+            --text-secondary: #78716c;
+            --text-muted: #a8a29e;
+            --border: rgba(168, 162, 158, 0.35);
+            --gold: #c5a55a;
+            --gold-light: #d4bb7a;
+            --gold-dark: #a88d3e;
+            --dark-section: #2A2621;
+            --white-soft: #EFECE5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Selection */
+        ::selection { background: rgba(197, 165, 90, 0.25); color: var(--text-primary); }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #D7D3C8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #AFAAA0; }
+
+        /* Marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee { animation: marquee 105s linear infinite; }
+
+
+        /* Image container fix */
+        .img-container { transform: translateZ(0); }
+
+        /* ===== LAYOUT ===== */
+        .site-wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--bg);
+            min-height: 100vh;
+            min-height: 100dvh;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            box-shadow: 0 25px 50px -12px rgba(41, 37, 36, 0.05);
+        }
+
+        /* Background lines */
+        .bg-lines {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .bg-lines-inner {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+        .bg-line {
+            width: 1px;
+            height: 100%;
+            background: var(--border);
+            transform-origin: top;
+        }
+        .bg-line.hide-mobile { display: none; }
+
+        @media (min-width: 768px) {
+            .bg-lines-inner { padding: 0 24px; }
+            .bg-line.hide-md { display: block; }
+        }
+        @media (min-width: 1024px) {
+            .bg-lines-inner { padding: 0 32px; }
+            .bg-line.hide-mobile { display: block; }
+        }
+
+        /* ===== NAV ===== */
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        .nav-brand img {
+            height: 126px;
+            width: 126px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .nav-brand-name {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+        .nav-brand-sub {
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .nav-links {
+            display: none;
+            align-items: center;
+            gap: 40px;
+        }
+        .nav-links a {
+            font-size: 17px;
+            font-weight: 300;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 17px;
+            font-weight: 300;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            transition: color 0.3s;
+        }
+        .nav-cta:hover { color: var(--gold); }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 24px;
+        }
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 0;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            display: block;
+            padding: 16px 32px;
+            font-size: 13px;
+            font-weight: 300;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        .mobile-menu a:hover { color: var(--text-primary); background: var(--bg-alt); }
+
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid var(--border);
+        }
+        @media (min-width: 1024px) {
+            .hero-left { border-bottom: 0; }
+        }
+        .hero-left-top { padding: 32px 32px 64px; }
+        .hero-title {
+            font-size: clamp(52px, 10vw, 120px);
+            font-weight: 200;
+            letter-spacing: -0.04em;
+            line-height: 0.9;
+            color: var(--text-primary);
+            text-transform: uppercase;
+        }
+        .hero-title .gold { color: var(--gold); }
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 48px;
+            background: var(--text-primary);
+            color: var(--white-soft);
+            font-size: 11px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 16px 32px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 24px -4px rgba(41, 37, 36, 0.2);
+            transition: all 0.5s;
+            text-decoration: none;
+        }
+        .hero-btn:hover { background: var(--gold-dark); transform: scale(1.05); }
+        .hero-btn iconify-icon { font-size: 20px; transition: transform 0.3s; }
+        .hero-btn:hover iconify-icon { transform: translate(2px, -2px); }
+
+        .hero-bottom {
+            padding: 32px;
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        @media (min-width: 1024px) {
+            .hero-bottom { border-top: 0; }
+        }
+        .hero-bottom p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 420px;
+        }
+        .hero-avatars {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .hero-avatars img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--bg);
+            object-fit: cover;
+            filter: grayscale(1);
+            opacity: 0.9;
+            margin-left: -12px;
+        }
+        .hero-avatars img:first-child { margin-left: 0; }
+        .hero-avatar-count {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--bg);
+            background: rgba(214, 208, 194, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            margin-left: -12px;
+            z-index: 10;
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: rgba(214, 208, 194, 0.15);
+        }
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            border-bottom: 1px solid var(--border);
+            flex: 1;
+        }
+        @media (min-width: 1024px) {
+            .hero-visual { border-bottom: 1px solid var(--border); }
+        }
+        .pill-image {
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 1/1.6;
+            border-radius: 999px 999px 999px 999px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 40px -8px rgba(41, 37, 36, 0.15);
+            border: 1px solid rgba(197, 165, 90, 0.2);
+        }
+        .pill-image img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-stats {
+            padding: 36px 32px;
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            background: var(--bg);
+        }
+        .stat-number {
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 300;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: flex-start;
+        }
+        .stat-suffix {
+            color: var(--text-muted);
+            font-size: 20px;
+            font-weight: 300;
+            margin-top: 4px;
+            margin-left: 2px;
+        }
+        .stat-prefix {
+            color: var(--text-muted);
+            font-size: 20px;
+            font-weight: 300;
+            margin-top: 4px;
+            margin-right: 2px;
+        }
+        .stat-label {
+            font-size: 10px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-bottom { flex-direction: row; align-items: center; }
+        }
+        @media (min-width: 1024px) {
+            .hero {
+                grid-template-columns: 2fr 1fr;
+                grid-template-rows: auto auto;
+            }
+            .hero-left {
+                grid-column: 1;
+                grid-row: 1 / 3;
+                border-bottom: 0;
+                border-right: 1px solid var(--border);
+            }
+            .hero-right {
+                grid-column: 2;
+                grid-row: 1 / 3;
+                display: grid;
+                grid-template-rows: 1fr auto;
+            }
+            .hero-left-top { padding: 64px 32px 128px; }
+            .hero-bottom { border-top: 1px solid var(--border); }
+            .hero-visual { padding: 48px; }
+        }
+
+        /* ===== MARQUEE (Parceiros) ===== */
+        .marquee-section {
+            padding: 64px 0;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .marquee-label {
+            text-align: center;
+            padding: 0 32px;
+            margin-bottom: 40px;
+        }
+        .marquee-label p {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        .marquee-track {
+            display: flex;
+            width: 100%;
+            position: relative;
+            opacity: 0.6;
+        }
+        .marquee-inner { display: flex; width: max-content; }
+        .marquee-items {
+            display: flex;
+            align-items: center;
+            padding: 0 32px;
+            gap: 64px;
+        }
+        .marquee-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .marquee-item span {
+            font-size: 10px;
+            font-weight: 300;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .marquee-item iconify-icon {
+            font-size: 56px;
+            color: var(--text-muted);
+            transition: color 0.5s;
+        }
+        .marquee-item iconify-icon:hover { color: var(--text-primary); }
+
+        @media (min-width: 1024px) {
+            .marquee-section { padding: 80px 0; }
+        }
+
+        /* ===== PHILOSOPHY ===== */
+        .philosophy {
+            padding: 96px 32px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: var(--bg-alt);
+        }
+        .philosophy iconify-icon {
+            font-size: 36px;
+            color: var(--gold);
+            margin-bottom: 32px;
+        }
+        .philosophy h2 {
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 200;
+            letter-spacing: -0.04em;
+            color: var(--text-primary);
+            max-width: 900px;
+            line-height: 1.1;
+        }
+        .philosophy .sub {
+            margin-top: 40px;
+            font-size: 17px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 640px;
+            line-height: 1.7;
+        }
+        @media (min-width: 1024px) {
+            .philosophy { padding: 160px 32px; }
+        }
+
+        /* ===== SERVICES (Gallery adaptado) ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+        .service-card {
+            padding: 32px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: background 0.5s;
+        }
+        .service-card:last-child { border-bottom: none; }
+        .service-card:hover { background: var(--bg-alt); }
+        .service-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            margin-bottom: 32px;
+            background: rgba(214, 208, 194, 0.3);
+            border-radius: 4px;
+        }
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s ease-out;
+        }
+        .service-card:hover .service-img img { transform: scale(1.05); }
+        .service-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .service-info h3 {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .service-info .tag {
+            font-size: 11px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        .arrow-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+        .arrow-btn iconify-icon { font-size: 20px; color: var(--text-secondary); transition: color 0.3s; }
+        .service-card:hover .arrow-btn {
+            background: var(--text-primary);
+            border-color: var(--text-primary);
+        }
+        .service-card:hover .arrow-btn iconify-icon { color: var(--white-soft); }
+
+        @media (min-width: 768px) {
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            .service-card { border-bottom: none; }
+            .service-card:first-child { border-right: 1px solid var(--border); }
+        }
+
+        /* ===== PILATES ===== */
+        .pilates {
+            padding: 96px 32px;
+        }
+        .pilates-header {
+            max-width: 900px;
+            margin: 0 auto 72px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .pilates-header .eyebrow {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 24px;
+        }
+        .pilates-header .eyebrow::before,
+        .pilates-header .eyebrow::after {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 1px;
+            background: var(--gold);
+            vertical-align: middle;
+            margin: 0 16px;
+        }
+        .pilates-header h2 {
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 200;
+            letter-spacing: -0.04em;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+        .pilates-header .sub {
+            margin-top: 32px;
+            font-size: 17px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 680px;
+        }
+        .pilates-header .sub + .sub { margin-top: 16px; }
+
+        .pilates-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            background: var(--bg);
+        }
+        .pilates-card {
+            padding: 40px 32px;
+        }
+        .pilates-card-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .pilates-card-head iconify-icon { font-size: 28px; color: var(--gold); }
+        .pilates-card-head h3 {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+        .pilates-card .card-intro {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .pilates-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+        .pilates-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .pilates-list iconify-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            color: var(--gold);
+            margin-top: 1px;
+        }
+
+        .pilates-process,
+        .pilates-diff {
+            margin-top: 16px;
+            padding: 48px 32px;
+            background: var(--bg);
+        }
+        .pilates-process-head,
+        .pilates-diff-head {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .pilates-process-head iconify-icon,
+        .pilates-diff-head iconify-icon { font-size: 28px; color: var(--gold); flex-shrink: 0; }
+        .pilates-process-head h3,
+        .pilates-diff-head h3 {
+            font-size: clamp(22px, 3.5vw, 36px);
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+        }
+        .pilates-process .process-intro {
+            text-align: center;
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 640px;
+            margin: -16px auto 40px;
+        }
+        .pilates-steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+        .pilates-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px 24px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--bg-alt);
+            transition: background 0.3s;
+        }
+        .pilates-step:hover { background: rgba(214, 208, 194, 0.35); }
+        .pilates-step .step-num {
+            font-size: 11px;
+            font-weight: 300;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+            padding-top: 5px;
+            flex-shrink: 0;
+        }
+        .pilates-step p {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .pilates-diff-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .pilates-diff-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .pilates-diff-list iconify-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            color: var(--gold);
+            margin-top: 1px;
+        }
+
+        .pilates-cta {
+            margin-top: 16px;
+            padding: 56px 32px;
+            text-align: center;
+            background: var(--text-primary);
+            color: var(--white-soft);
+            border-radius: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        .pilates-cta .glow {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+            background: rgba(197, 165, 90, 0.15);
+            filter: blur(64px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .pilates-cta h3 {
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 200;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 10;
+        }
+        .pilates-cta p {
+            font-size: 17px;
+            font-weight: 300;
+            color: rgba(214, 208, 194, 0.7);
+            max-width: 560px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 10;
+        }
+        .pilates-cta a {
+            max-width: 320px;
+            margin: 0 auto;
+            background: var(--white-soft);
+            color: var(--text-primary);
+            border: 1px solid var(--white-soft);
+        }
+        .pilates-cta a:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        @media (min-width: 768px) {
+            .pilates { padding: 120px 32px; }
+            .pilates-grid { grid-template-columns: 1fr 1fr; }
+            .pilates-card { border-bottom: none; }
+            .pilates-steps { grid-template-columns: 1fr 1fr; }
+        }
+        @media (min-width: 1024px) {
+            .pilates { padding: 160px 32px 90px; }
+            .pilates-card { padding: 48px 40px; }
+            .pilates-process,
+            .pilates-diff { padding: 64px 48px; }
+            .pilates-cta { padding: 72px 48px; }
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            padding: 96px 32px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            background: var(--bg-alt);
+            overflow: hidden;
+        }
+        .testimonials .bg-quote {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            font-size: 320px;
+            font-weight: 100;
+            color: rgba(168, 162, 158, 0.12);
+            pointer-events: none;
+            user-select: none;
+        }
+        .testimonials-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+        .testimonials-header {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+        .testimonials-header h2 {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 200;
+            letter-spacing: -0.04em;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+        .testimonials-header .hint {
+            font-size: 11px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            max-width: 280px;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            border: 1px solid var(--border);
+        }
+        .review-card {
+            padding: 32px;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.5s;
+        }
+        .review-card:last-child { border-bottom: none; }
+        .review-card:hover { background: var(--text-primary); }
+        .review-card iconify-icon.chat-icon {
+            font-size: 28px;
+            color: rgba(168, 162, 158, 0.4);
+            margin-bottom: 32px;
+            transition: color 0.5s;
+        }
+        .review-card:hover iconify-icon.chat-icon { color: rgba(120, 113, 108, 0.5); }
+        .review-card .quote {
+            font-size: 17px;
+            font-weight: 300;
+            color: rgba(120, 113, 108, 1);
+            line-height: 1.65;
+            margin-bottom: 48px;
+            transition: color 0.5s;
+        }
+        .review-card:hover .quote { color: rgba(214, 208, 194, 0.8); }
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .reviewer img {
+            width: 63px;
+            height: 63px;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: grayscale(1);
+            opacity: 0.8;
+            transition: opacity 0.5s;
+        }
+        .review-card:hover .reviewer img { opacity: 1; filter: none; }
+        .reviewer-name {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-primary);
+            transition: color 0.5s;
+        }
+        .review-card:hover .reviewer-name { color: var(--white-soft); }
+        .reviewer-role {
+            font-size: 11px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-top: 2px;
+            transition: color 0.5s;
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-header { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+            .testimonials-header .hint { text-align: right; }
+            .testimonials-grid { grid-template-columns: 1fr 1fr; }
+            .review-card { border-bottom: none; border-right: 1px solid var(--border); }
+            .review-card:nth-child(2) { border-right: none; }
+            .review-card:nth-child(3) { grid-column: span 2; border-top: 1px solid var(--border); }
+        }
+        @media (min-width: 1024px) {
+            .testimonials { padding: 128px 32px; }
+            .testimonials-grid { grid-template-columns: 1fr 1fr 1fr; }
+            .review-card { padding: 48px; }
+            .review-card:nth-child(2) { border-right: 1px solid var(--border); }
+            .review-card:nth-child(3) { grid-column: span 1; border-top: none; }
+            .review-card:last-child { border-right: none; }
+        }
+
+        /* ===== PRICING ===== */
+        .pricing {
+            padding: 96px 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .pricing-header {
+            max-width: 1200px;
+            margin: 0 auto 64px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .pricing-header h2 {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 200;
+            letter-spacing: -0.04em;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+        .pricing-header .sub {
+            margin-top: 24px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 480px;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg);
+        }
+        .price-card {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: background 0.5s;
+        }
+        .price-card:hover { background: var(--bg-alt); }
+        .price-card.featured {
+            background: var(--text-primary);
+            color: var(--white-soft);
+            position: relative;
+            overflow: hidden;
+        }
+        .price-card.featured:hover { background: #1c1917; }
+        .price-card.featured .glow {
+            position: absolute;
+            top: 0; right: 0;
+            width: 128px;
+            height: 128px;
+            background: rgba(197, 165, 90, 0.15);
+            filter: blur(48px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .price-card h3 {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 10;
+        }
+        .price-card .tier-desc {
+            font-size: 14px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 48px;
+            position: relative;
+            z-index: 10;
+        }
+        .price-card .tier-desc { color: var(--text-secondary); }
+        .price-card.featured .tier-desc { color: var(--text-muted); }
+        .price-value {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 10;
+        }
+        .price-value .from {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--text-secondary);
+        }
+        .price-card.featured .price-value .from { color: var(--text-muted); }
+        .price-value .amount {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: -0.03em;
+        }
+        .price-value .unit {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--text-muted);
+        }
+        .price-card.featured .price-value .unit { color: rgba(120, 113, 108, 0.6); }
+        .price-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 48px;
+            flex: 1;
+            position: relative;
+            z-index: 10;
+        }
+        .price-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 17px;
+            font-weight: 300;
+        }
+        .price-features li { color: var(--text-secondary); }
+        .price-card.featured .price-features li { color: rgba(214, 208, 194, 0.7); }
+        .price-features iconify-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .price-features iconify-icon { color: var(--gold); }
+        .price-card.featured .price-features iconify-icon { color: var(--gold-dark); }
+        .price-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 17px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+        .price-btn.outline {
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-primary);
+        }
+        .price-btn.outline:hover {
+            border-color: var(--text-primary);
+            background: var(--text-primary);
+            color: var(--white-soft);
+        }
+        .price-btn.solid {
+            border: none;
+            background: var(--white-soft);
+            color: var(--text-primary);
+        }
+        .price-btn.solid:hover { background: rgba(214, 208, 194, 0.9); }
+
+        @media (min-width: 768px) {
+            .pricing-grid { grid-template-columns: 1fr 1fr 1fr; }
+        }
+        @media (min-width: 1024px) {
+            .pricing { padding: 128px 32px; }
+            .price-card { padding: 48px; }
+        }
+
+        /* ===== FAQ ===== */
+        .faq {
+            padding: 96px 32px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(214, 208, 194, 0.08);
+        }
+        .faq-inner { max-width: 800px; margin: 0 auto; }
+        .faq h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 200;
+            letter-spacing: -0.04em;
+            color: var(--text-primary);
+            margin-bottom: 64px;
+            text-align: center;
+        }
+        .faq-list { border-top: 1px solid var(--border); }
+        details { border-bottom: 1px solid var(--border); }
+        details summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            list-style: none;
+            padding: 32px 0;
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 300;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            transition: color 0.3s;
+        }
+        details summary:hover { color: var(--text-secondary); }
+        details summary::-webkit-details-marker { display: none; }
+        .faq-icon {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .faq-icon .h-line, .faq-icon .v-line {
+            position: absolute;
+            background: var(--text-secondary);
+            transition: transform 0.3s;
+        }
+        .faq-icon .h-line { width: 100%; height: 1px; }
+        .faq-icon .v-line { width: 1px; height: 100%; }
+        details[open] .faq-icon .h-line { transform: rotate(180deg); }
+        details[open] .faq-icon .v-line { transform: rotate(90deg); }
+        details .faq-answer {
+            padding-bottom: 32px;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+        details .faq-answer p {
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding-top: 8px;
+        }
+        @media (min-width: 1024px) {
+            .faq { padding: 128px 32px; }
+        }
+
+        /* ===== DARK SECTION (Eventos/Workshops) ===== */
+        .dark-section {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .dark-inner {
+            background: var(--dark-section);
+            border-radius: 32px;
+            padding: 32px;
+            overflow: hidden;
+            position: relative;
+            color: var(--white-soft);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        }
+        .dark-glow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            background: rgba(197, 165, 90, 0.06);
+            filter: blur(100px);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .dark-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .dark-content h2 {
+            text-align: center;
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 200;
+            letter-spacing: -0.04em;
+            margin-bottom: 64px;
+            text-transform: uppercase;
+        }
+        .event-list { display: flex; flex-direction: column; gap: 16px; }
+
+        /* Featured event */
+        .event-featured {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: var(--white-soft);
+            color: var(--text-primary);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: transform 0.5s;
+        }
+        .event-featured:hover { transform: translateY(-4px); }
+        .event-featured-info {
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            z-index: 10;
+            background: var(--white-soft);
+        }
+        .event-featured-info .num {
+            font-size: 11px;
+            font-weight: 300;
+            color: var(--text-muted);
+            width: 24px;
+        }
+        .event-featured-info h3 {
+            font-size: clamp(18px, 3vw, 28px);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        .event-featured-img {
+            position: relative;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 9 / 16;
+            overflow: hidden;
+        }
+        .event-featured-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            opacity: 0.9;
+            transition: transform 1.5s ease-out;
+        }
+        .event-featured:hover .event-featured-img img { transform: scale(1.05); }
+        .event-featured-meta {
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            z-index: 20;
+            background: var(--white-soft);
+        }
+        .event-featured-meta .date {
+            font-size: 11px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        /* Regular event */
+        .event-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 32px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .event-item:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .event-item-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .event-item-left .num {
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(120, 113, 108, 0.6);
+            width: 24px;
+        }
+        .event-item-left h3 {
+            font-size: clamp(18px, 3vw, 28px);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: rgba(214, 208, 194, 0.7);
+            transition: color 0.3s;
+        }
+        .event-item:hover .event-item-left h3 { color: var(--white-soft); }
+        .event-item-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .event-item-right .date {
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(120, 113, 108, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            display: none;
+        }
+        .event-item-right iconify-icon {
+            font-size: 24px;
+            color: rgba(120, 113, 108, 0.6);
+            transition: color 0.3s;
+        }
+        .event-item:hover .event-item-right iconify-icon { color: var(--white-soft); }
+
+        @media (min-width: 768px) {
+            .dark-inner { padding: 64px; }
+            .dark-content h2 { margin-bottom: 96px; }
+            .event-featured { flex-direction: row; border-radius: 999px; }
+            .event-featured-info { width: 42%; flex-shrink: 0; }
+            .event-featured-img { width: auto; flex: 1; height: 260px; aspect-ratio: auto; }
+            .event-featured-meta { width: 33%; flex-shrink: 0; justify-content: flex-end; }
+            .event-item { padding: 32px 40px; border-radius: 999px; }
+            .event-item-right .date { display: block; }
+        }
+        @media (min-width: 1024px) {
+            .dark-section { padding: 32px 48px; }
+            .dark-inner { padding: 96px; }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+        .footer-top {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 420px;
+        }
+        .footer-brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .footer-brand-logo img {
+            height: 122px;
+            width: 122px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .footer-brand-logo span {
+            font-size: 22px;
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+        .footer-brand p {
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .footer-email-group {
+            display: flex;
+            margin-top: 8px;
+        }
+        .footer-email-group input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+            width: 100%;
+            font-size: 14px;
+            font-weight: 300;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .footer-email-group input::placeholder { color: var(--text-muted); }
+        .footer-email-group input:focus { border-color: var(--text-primary); }
+        .footer-email-group button {
+            border: none;
+            border-bottom: 1px solid var(--border);
+            background: transparent;
+            padding: 12px 16px;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: border-color 0.3s;
+        }
+        .footer-email-group button:hover { border-color: var(--text-primary); }
+        .footer-email-group button iconify-icon { font-size: 20px; }
+        .footer-links {
+            display: flex;
+            gap: 64px;
+        }
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .footer-col-title {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+        .footer-col a {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover { color: var(--text-primary); }
+        .footer-col .footer-address {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            max-width: 260px;
+            line-height: 1.5;
+        }
+        .footer-col .footer-address:hover { color: var(--text-primary); }
+        .footer-col .footer-address iconify-icon {
+            font-size: 22px;
+            color: var(--gold);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+        .footer-bottom p {
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--text-muted);
+        }
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+        }
+        .footer-socials a {
+            font-size: 25px;
+            color: var(--text-muted);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .footer-socials a:hover { color: var(--gold); }
+
+        @media (min-width: 768px) {
+            .footer-top { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+            .footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+        }
+        @media (min-width: 1024px) {
+            .footer { padding: 64px; }
+        }
+
+        /* ===== WhatsApp Float ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: calc(24px + env(safe-area-inset-bottom));
+            right: calc(24px + env(safe-area-inset-right));
+            z-index: 9999;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.45);
+        }
+        .whatsapp-float iconify-icon { font-size: 32px; color: white; }
+
+        /* ===== GSAP animation classes ===== */
+        .section-animate { opacity: 0; }
+        .reveal-text { opacity: 0; }
+    </style>
+</head>
+<body>
+
+    <!-- Background Lines -->
+    <div class="bg-lines">
+        <div class="bg-lines-inner">
+            <div class="bg-line"></div>
+            <div class="bg-line hide-mobile hide-md"></div>
+            <div class="bg-line hide-mobile"></div>
+            <div class="bg-line"></div>
+        </div>
+    </div>
+
+    <!-- Site Wrapper -->
+    <div class="site-wrapper">
+
+        <!-- Navigation -->
+        <nav class="nav section-animate" id="nav">
+            <a href="#" class="nav-brand">
+                <img src="images/Logo.png" alt="Instituto AG Logo">
+                <div class="nav-brand-text">
+                    <span class="nav-brand-name">Instituto AG</span>
+                    <span class="nav-brand-sub">Dra. Andressa Gomes</span>
+                </div>
+            </a>
+
+            <div class="nav-links">
+                <a href="#inicio" class="active">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#pilates">Pilates</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#planos">Planos</a>
+                <a href="#faq">Dúvidas</a>
+            </div>
+
+            <a href="https://wa.me/5588996443187" class="nav-cta" target="_blank" rel="noopener">
+                Agendar
+                <iconify-icon icon="solar:arrow-right-up-linear" style="font-size:18px;" stroke-width="1.5"></iconify-icon>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
+                <iconify-icon icon="solar:hamburger-menu-linear" stroke-width="1.5"></iconify-icon>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#inicio">Início</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#pilates">Pilates</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <a href="#planos">Planos</a>
+            <a href="#faq">Dúvidas</a>
+            <a href="https://wa.me/5588996443187" target="_blank" rel="noopener">Agendar Consulta</a>
+        </div>
+
+        <!-- Hero Section -->
+        <main class="hero section-animate" id="inicio">
+            <!-- Left Column -->
+            <div class="hero-left">
+                <div class="hero-left-top">
+                    <h1 class="hero-title reveal-text">
+                        Seu corpo<br>em <span class="gold">equilíbrio</span>
+                    </h1>
+                    <a href="https://wa.me/5588996443187" class="hero-btn" target="_blank" rel="noopener">
+                        Agendar Avaliação
+                        <iconify-icon icon="solar:arrow-right-up-linear" stroke-width="1.5"></iconify-icon>
+                    </a>
+                </div>
+
+                <div class="hero-bottom">
+                    <p>Fisioterapia ortopédica de excelência, com tratamentos personalizados que devolvem movimento, conforto e qualidade de vida.</p>
+                    <div class="hero-avatars">
+                        <img src="images/Depoimentos/dep.01.jpg" alt="Paciente">
+                        <img src="images/Depoimentos/dep.02.jpg" alt="Paciente">
+                        <img src="images/Depoimentos/dep.03.jpg" alt="Paciente">
+                        <div class="hero-avatar-count">+500</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="hero-right">
+                <div class="hero-visual">
+                    <div class="pill-image">
+                        <img src="images/Foto%20perfil.jpg" alt="Dra. Andressa Gomes — Fisioterapeuta">
+                    </div>
+                </div>
+
+                <div class="hero-stats">
+                    <div>
+                        <div class="stat-number">
+                            <span class="stat-count">2000</span><span class="stat-suffix">+</span>
+                        </div>
+                        <p class="stat-label">Pacientes</p>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="stat-number" style="justify-content:flex-end;">
+                            <span class="stat-prefix">+</span><span class="stat-count">5</span><span class="stat-suffix">anos</span>
+                        </div>
+                        <p class="stat-label">Experiência</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Marquee — Áreas de Atuação -->
+        <section class="marquee-section section-animate">
+            <div class="marquee-label">
+                <p>Áreas de atuação reconhecidas</p>
+            </div>
+            <div class="marquee-track marquee-content">
+                <div class="marquee-inner animate-marquee">
+                    <div class="marquee-items">
+                        <div class="marquee-item"><span>Lesões no Ombro</span><iconify-icon icon="hugeicons:shoulder" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões na Coluna</span><iconify-icon icon="healthicons:spine-outline" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Quadril</span><iconify-icon icon="solar:body-shape-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Joelho</span><iconify-icon icon="game-icons:knee-cap" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Saúde do Idoso</span><iconify-icon icon="solar:heart-pulse-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Liberação Miofascial</span><iconify-icon icon="solar:hand-heart-linear" stroke-width="1.5"></iconify-icon></div>
+                    </div>
+                    <div class="marquee-items">
+                        <div class="marquee-item"><span>Lesões no Ombro</span><iconify-icon icon="hugeicons:shoulder" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões na Coluna</span><iconify-icon icon="healthicons:spine-outline" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Quadril</span><iconify-icon icon="solar:body-shape-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Joelho</span><iconify-icon icon="game-icons:knee-cap" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Saúde do Idoso</span><iconify-icon icon="solar:heart-pulse-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Liberação Miofascial</span><iconify-icon icon="solar:hand-heart-linear" stroke-width="1.5"></iconify-icon></div>
+                    </div>
+                    <div class="marquee-items">
+                        <div class="marquee-item"><span>Lesões no Ombro</span><iconify-icon icon="hugeicons:shoulder" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões na Coluna</span><iconify-icon icon="healthicons:spine-outline" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Quadril</span><iconify-icon icon="solar:body-shape-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Joelho</span><iconify-icon icon="game-icons:knee-cap" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Saúde do Idoso</span><iconify-icon icon="solar:heart-pulse-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Liberação Miofascial</span><iconify-icon icon="solar:hand-heart-linear" stroke-width="1.5"></iconify-icon></div>
+                    </div>
+                    <div class="marquee-items">
+                        <div class="marquee-item"><span>Lesões no Ombro</span><iconify-icon icon="hugeicons:shoulder" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões na Coluna</span><iconify-icon icon="healthicons:spine-outline" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Quadril</span><iconify-icon icon="solar:body-shape-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Joelho</span><iconify-icon icon="game-icons:knee-cap" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Saúde do Idoso</span><iconify-icon icon="solar:heart-pulse-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Liberação Miofascial</span><iconify-icon icon="solar:hand-heart-linear" stroke-width="1.5"></iconify-icon></div>
+                    </div>
+                    <div class="marquee-items">
+                        <div class="marquee-item"><span>Lesões no Ombro</span><iconify-icon icon="hugeicons:shoulder" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões na Coluna</span><iconify-icon icon="healthicons:spine-outline" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Quadril</span><iconify-icon icon="solar:body-shape-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Joelho</span><iconify-icon icon="game-icons:knee-cap" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Saúde do Idoso</span><iconify-icon icon="solar:heart-pulse-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Liberação Miofascial</span><iconify-icon icon="solar:hand-heart-linear" stroke-width="1.5"></iconify-icon></div>
+                    </div>
+                    <div class="marquee-items">
+                        <div class="marquee-item"><span>Lesões no Ombro</span><iconify-icon icon="hugeicons:shoulder" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões na Coluna</span><iconify-icon icon="healthicons:spine-outline" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Quadril</span><iconify-icon icon="solar:body-shape-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Lesões no Joelho</span><iconify-icon icon="game-icons:knee-cap" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Saúde do Idoso</span><iconify-icon icon="solar:heart-pulse-linear" stroke-width="1.5"></iconify-icon></div>
+                        <div class="marquee-item"><span>Liberação Miofascial</span><iconify-icon icon="solar:hand-heart-linear" stroke-width="1.5"></iconify-icon></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy — Sobre -->
+        <section class="philosophy section-animate" id="sobre">
+            <iconify-icon icon="solar:hand-heart-linear" stroke-width="1.5"></iconify-icon>
+            <h2 class="reveal-text">
+                Cuidado especializado. Tratamento humanizado. Resultados que transformam vidas.
+            </h2>
+            <p class="sub">
+                A Dra. Andressa Gomes une técnica e sensibilidade para oferecer uma fisioterapia ortopédica que respeita o seu corpo, entende a sua dor e trabalha junto a você pela recuperação completa. CREFITO 356314-F.
+            </p>
+            <p class="sub" style="margin-top: 16px;">
+                Além do atendimento presencial, oferecemos atendimento on-line e também domiciliar.
+            </p>
+        </section>
+
+        <!-- Services Gallery -->
+        <section class="services-grid section-animate" id="servicos">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-img img-container">
+                    <img src="images/physio_treatment.jpg" alt="Fisioterapia Ortopédica — Terapia Manual">
+                </div>
+                <div class="service-info">
+                    <div>
+                        <h3>Fisioterapia Ortopédica</h3>
+                        <span class="tag">Terapia Manual & Reabilitação</span>
+                    </div>
+                    <button class="arrow-btn" aria-label="Saiba mais sobre Fisioterapia Ortopédica">
+                        <iconify-icon icon="solar:arrow-right-up-linear" stroke-width="1.5"></iconify-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-img img-container">
+                    <img src="images/ortho_treatment.jpg" alt="Avaliação Postural e Funcional">
+                </div>
+                <div class="service-info">
+                    <div>
+                        <h3>Avaliação Postural</h3>
+                        <span class="tag">Diagnóstico & Prevenção</span>
+                    </div>
+                    <button class="arrow-btn" aria-label="Saiba mais sobre Avaliação Postural">
+                        <iconify-icon icon="solar:arrow-right-up-linear" stroke-width="1.5"></iconify-icon>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials section-animate" id="depoimentos">
+            <span class="bg-quote">"</span>
+            <div class="testimonials-inner">
+                <div class="testimonials-header">
+                    <h2 class="reveal-text">Quem confia<br>no Instituto AG</h2>
+                    <p class="hint">Relatos de pacientes que recuperaram movimento e qualidade de vida.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <!-- Review 1 -->
+                    <div class="review-card">
+                        <iconify-icon icon="solar:chat-round-line-linear" class="chat-icon" stroke-width="1.5"></iconify-icon>
+                        <p class="quote">"Eu comecei o tratamento com a doutora Andressa porque meu pé estava muito inchado. Eu não conseguia nem pisar no chão, nem usar sandália. Então comecei o tratamento e já senti melhora nas primeiras sessões. Hoje estou concluindo o tratamento e, graças a Deus, meu pé está bem e não inchou mais. O tratamento foi excelente. Deus abençoe a doutora Andressa e, quando eu precisar, vou procurá-la novamente. Só tenho a agradecer à doutora Andressa, viu, gente? Foi um tratamento muito eficiente. Muito obrigada!"</p>
+                        <div class="reviewer">
+                            <img src="images/Depoimentos/dep.01.jpg" alt="Paciente Ana">
+                            <div>
+                                <p class="reviewer-name">Ana Oliveira</p>
+                                <p class="reviewer-role">Paciente — Pé</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="review-card">
+                        <iconify-icon icon="solar:chat-round-line-linear" class="chat-icon" stroke-width="1.5"></iconify-icon>
+                        <p class="quote">"Na realidade, vale a pena fazer esse investimento. É um tratamento acompanhado pelo médico e muito bem assistido pela doutora Andressa, que está sempre presente durante todo o processo. Muito obrigado! Desejo muito sucesso no seu trabalho, porque realmente vale a pena. As pessoas que ainda não conhecem esse tratamento, quando passam a conhecê-lo, só têm a agradecer. Muito obrigado!"</p>
+                        <div class="reviewer">
+                            <img src="images/Depoimentos/dep.02.jpg" alt="Paciente José">
+                            <div>
+                                <p class="reviewer-name">José Santos</p>
+                                <p class="reviewer-role">Paciente — Acompanhamento</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="review-card">
+                        <iconify-icon icon="solar:chat-round-line-linear" class="chat-icon" stroke-width="1.5"></iconify-icon>
+                        <p class="quote">"Eu cheguei aqui há dois meses atrás, quase sem poder andar. Eu tinha uma doença crônica no meu joelho, que estava me incomodando muito. Fui muito bem acolhida pela doutora Andressa e hoje, depois de poucos dias, graças a Deus, eu estou bem melhor."</p>
+                        <div class="reviewer">
+                            <img src="images/Depoimentos/dep.03.jpg" alt="Paciente Fátima">
+                            <div>
+                                <p class="reviewer-name">Fátima Silva</p>
+                                <p class="reviewer-role">Paciente — Joelho</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pilates Clínico -->
+        <section class="pilates section-animate" id="pilates">
+            <div class="pilates-header">
+                <span class="eyebrow">Pilates Clínico</span>
+                <h2 class="reveal-text">Movimento com propósito.<br>Mais força, equilíbrio e qualidade de vida.</h2>
+                <p class="sub">O Pilates Clínico é um método de exercícios realizado com acompanhamento de um fisioterapeuta, desenvolvido para aliviar dores, melhorar a postura, fortalecer a musculatura profunda e recuperar a funcionalidade do corpo de forma segura e personalizada.</p>
+                <p class="sub">Cada sessão é planejada de acordo com as necessidades individuais do paciente, respeitando suas limitações e objetivos, proporcionando resultados progressivos e duradouros.</p>
+            </div>
+
+            <div class="pilates-grid">
+                <!-- Benefícios -->
+                <div class="pilates-card">
+                    <div class="pilates-card-head">
+                        <iconify-icon icon="solar:strong-heart-linear" stroke-width="1.5"></iconify-icon>
+                        <h3>Benefícios do Pilates</h3>
+                    </div>
+                    <ul class="pilates-list">
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Alívio de dores na coluna, pescoço e articulações.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Correção postural e melhora do alinhamento corporal.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Fortalecimento do core (abdômen, lombar e pelve).</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Aumento da flexibilidade e mobilidade.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Melhora do equilíbrio e da coordenação motora.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Prevenção de lesões.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Reabilitação pós-cirúrgica e pós-traumática.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Melhora da respiração e da consciência corporal.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Redução do estresse e aumento do bem-estar.</li>
+                    </ul>
+                </div>
+
+                <!-- Para quem -->
+                <div class="pilates-card">
+                    <div class="pilates-card-head">
+                        <iconify-icon icon="solar:users-group-rounded-linear" stroke-width="1.5"></iconify-icon>
+                        <h3>Para quem é indicado?</h3>
+                    </div>
+                    <p class="card-intro">O Pilates é recomendado para pessoas de todas as idades, especialmente para:</p>
+                    <ul class="pilates-list">
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Pessoas com dores crônicas na coluna.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Hérnia de disco e lombalgia.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Cervicalgia.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Escoliose.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Artrose.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Fibromialgia.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Gestantes (com liberação médica).</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Idosos.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Atletas.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Pessoas sedentárias que desejam melhorar sua qualidade de vida.</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Pacientes em processo de reabilitação física.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Avaliação -->
+            <div class="pilates-process">
+                <div class="pilates-process-head">
+                    <iconify-icon icon="solar:clipboard-list-linear" stroke-width="1.5"></iconify-icon>
+                    <h3>Como funciona a avaliação?</h3>
+                </div>
+                <p class="process-intro">Antes do início das sessões, realizamos uma avaliação fisioterapêutica completa para identificar:</p>
+                <div class="pilates-steps">
+                    <div class="pilates-step"><span class="step-num">01</span><p>Histórico clínico.</p></div>
+                    <div class="pilates-step"><span class="step-num">02</span><p>Limitações de movimento.</p></div>
+                    <div class="pilates-step"><span class="step-num">03</span><p>Alterações posturais.</p></div>
+                    <div class="pilates-step"><span class="step-num">04</span><p>Nível de força muscular.</p></div>
+                    <div class="pilates-step"><span class="step-num">05</span><p>Flexibilidade.</p></div>
+                    <div class="pilates-step"><span class="step-num">06</span><p>Objetivos do tratamento.</p></div>
+                </div>
+            </div>
+
+            <!-- Diferenciais -->
+            <div class="pilates-diff">
+                <div class="pilates-diff-head">
+                    <iconify-icon icon="solar:star-linear" stroke-width="1.5"></iconify-icon>
+                    <h3>Diferenciais</h3>
+                </div>
+                <ul class="pilates-diff-list">
+                    <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Atendimento realizado por fisioterapeuta.</li>
+                    <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Exercícios personalizados para cada paciente.</li>
+                    <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Equipamentos modernos e seguros.</li>
+                    <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Ambiente climatizado e acolhedor.</li>
+                    <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Evolução acompanhada periodicamente.</li>
+                    <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Foco na prevenção, tratamento e manutenção da saúde.</li>
+                </ul>
+            </div>
+
+            <!-- CTA -->
+            <div class="pilates-cta">
+                <div class="glow"></div>
+                <h3>Agende sua avaliação</h3>
+                <p>Invista na sua saúde com um programa de Pilates pensado para o seu corpo. Entre em contato e descubra como o Pilates pode ajudar você a recuperar os movimentos, reduzir dores e conquistar mais qualidade de vida.</p>
+                <a href="https://wa.me/5588996443187" class="price-btn solid" target="_blank" rel="noopener">Agendar Avaliação</a>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="pricing section-animate" id="planos">
+            <div class="pricing-header">
+                <h2 class="reveal-text">Planos de<br>tratamento</h2>
+                <p class="sub">Pacotes transparentes para cada fase da sua recuperação.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Tier 1 -->
+                <div class="price-card">
+                    <h3>Avaliação</h3>
+                    <p class="tier-desc">Sessão inicial completa</p>
+                    <div class="price-value">
+                        <span class="from">A partir de</span>
+                        <span class="amount">R$200</span>
+                    </div>
+                    <ul class="price-features">
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Anamnese detalhada</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Testes ortopédicos especiais</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Avaliação postural completa</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Plano de tratamento personalizado</li>
+                    </ul>
+                    <a href="https://wa.me/5588996443187" class="price-btn outline" target="_blank" rel="noopener">Agendar</a>
+                </div>
+
+                <!-- Tier 2 - Featured -->
+                <div class="price-card featured">
+                    <div class="glow"></div>
+                    <h3>Tratamento</h3>
+                    <p class="tier-desc">Pacote de sessões</p>
+                    <div class="price-value">
+                        <span class="from">A partir de</span>
+                        <span class="amount">R$150</span>
+                        <span class="unit">/sessão</span>
+                    </div>
+                    <ul class="price-features">
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Terapia manual especializada</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Exercícios terapêuticos guiados</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Eletroterapia e recursos físicos</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Acompanhamento contínuo</li>
+                    </ul>
+                    <a href="https://wa.me/5588996443187" class="price-btn solid" target="_blank" rel="noopener">Iniciar Tratamento</a>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="price-card">
+                    <h3>Premium</h3>
+                    <p class="tier-desc">Atendimento domiciliar</p>
+                    <div class="price-value">
+                        <span class="from">A partir de</span>
+                        <span class="amount">R$300</span>
+                        <span class="unit">/sessão</span>
+                    </div>
+                    <ul class="price-features">
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Atendimento em domicílio</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Equipamentos portáteis inclusos</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Programa individualizado</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Pilates Clínico</li>
+                        <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Suporte via WhatsApp</li>
+                    </ul>
+                    <a href="https://wa.me/5588996443187" class="price-btn outline" target="_blank" rel="noopener">Consultar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq section-animate" id="faq">
+            <div class="faq-inner">
+                <h2 class="reveal-text">Perguntas frequentes</h2>
+
+                <div class="faq-list">
+                    <details name="faq" open>
+                        <summary>
+                            Como funciona a primeira consulta?
+                            <span class="faq-icon"><span class="h-line"></span><span class="v-line"></span></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Na primeira consulta, realizamos uma anamnese completa, avaliação postural, testes ortopédicos especiais e análise funcional. A partir disso, elaboramos um plano de tratamento totalmente personalizado para suas necessidades, com metas claras e previsão de tempo de recuperação.</p>
+                        </div>
+                    </details>
+
+                    <details name="faq">
+                        <summary>
+                            Quantas sessões são necessárias?
+                            <span class="faq-icon"><span class="h-line"></span><span class="v-line"></span></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>O número de sessões varia de acordo com a condição tratada, gravidade e resposta individual. Na avaliação inicial, fornecemos uma estimativa realista. Em média, tratamentos ortopédicos variam de 8 a 20 sessões, com reavaliações periódicas para ajustar o plano.</p>
+                        </div>
+                    </details>
+
+                    <details name="faq">
+                        <summary>
+                            Quais condições são tratadas?
+                            <span class="faq-icon"><span class="h-line"></span><span class="v-line"></span></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Tratamos diversas condições ortopédicas: dores na coluna (cervical, torácica e lombar), lesões de ombro, joelho e tornozelo, pós-operatórios ortopédicos, tendinites, bursites, hérnias de disco, artrose, fraturas e lesões esportivas, entre outras.</p>
+                        </div>
+                    </details>
+
+                    <details name="faq">
+                        <summary>
+                            Vocês atendem por convênio?
+                            <span class="faq-icon"><span class="h-line"></span><span class="v-line"></span></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Atualmente trabalhamos com atendimento particular, oferecendo a máxima qualidade e atenção individualizada em cada sessão. Emitimos recibo para reembolso junto ao seu plano de saúde. Entre em contato para mais informações sobre valores e pacotes.</p>
+                        </div>
+                    </details>
+
+                    <details name="faq">
+                        <summary>
+                            Como é feito o atendimento domiciliar?
+                            <span class="faq-icon"><span class="h-line"></span><span class="v-line"></span></span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>No plano Premium, levamos até você todos os equipamentos portáteis necessários para o tratamento. O atendimento mantém o mesmo padrão de qualidade da clínica, com a comodidade de ser realizado no conforto da sua casa. Atendemos em regiões específicas — consulte disponibilidade.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dark Section — Workshops / Eventos -->
+        <section class="dark-section section-animate">
+            <div class="dark-inner">
+                <div class="dark-glow"></div>
+                <div class="dark-content">
+                    <h2 class="reveal-text">Workshops<br>& Eventos</h2>
+
+                    <div class="event-list">
+                        <!-- Event 1 — Featured -->
+                        <div class="event-featured">
+                            <div class="event-featured-info">
+                                <span class="num">01</span>
+                                <h3>Cuidando da sua Coluna</h3>
+                            </div>
+                            <div class="event-featured-img img-container">
+                                <img src="images/events_section%20.jpg" alt="Workshop Coluna">
+                                <div style="position:absolute;inset:0;background:linear-gradient(to right, var(--white-soft), transparent, rgba(239,236,229,0.9));display:none;z-index:10;pointer-events:none;" class="img-gradient"></div>
+                            </div>
+                            <div class="event-featured-meta">
+                                <span class="date">15 Ago 2026</span>
+                                <button class="arrow-btn" style="border-color:var(--border);" aria-label="Ver detalhes">
+                                    <iconify-icon icon="solar:arrow-right-up-linear" stroke-width="1.5"></iconify-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Event 2 -->
+                        <div class="event-item">
+                            <div class="event-item-left">
+                                <span class="num">02</span>
+                                <h3>Postura no Home Office</h3>
+                            </div>
+                            <div class="event-item-right">
+                                <span class="date">22 Set 2026</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" stroke-width="1.5"></iconify-icon>
+                            </div>
+                        </div>
+
+                        <!-- Event 3 -->
+                        <div class="event-item">
+                            <div class="event-item-left">
+                                <span class="num">03</span>
+                                <h3>Prevenção de Lesões Esportivas</h3>
+                            </div>
+                            <div class="event-item-right">
+                                <span class="date">10 Nov 2026</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" stroke-width="1.5"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer section-animate" id="contato">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-brand-logo">
+                        <img src="images/Logo.png" alt="Instituto AG">
+                        <span>Instituto AG</span>
+                    </div>
+                    <p>Receba dicas de saúde, exercícios e novidades sobre fisioterapia ortopédica diretamente no seu e-mail.</p>
+                    <div class="footer-email-group">
+                        <input type="email" placeholder="Seu melhor e-mail" id="footer-email">
+                        <button aria-label="Inscrever-se">
+                            <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <span class="footer-col-title">Navegação</span>
+                        <a href="#inicio">Início</a>
+                        <a href="#servicos">Serviços</a>
+                        <a href="#pilates">Pilates</a>
+                        <a href="#planos">Planos</a>
+                        <a href="#faq">Dúvidas</a>
+                    </div>
+                    <div class="footer-col">
+                        <span class="footer-col-title">Contato</span>
+                        <a href="https://wa.me/5588996443187" target="_blank" rel="noopener">WhatsApp</a>
+                        <a href="https://www.instagram.com/instituto.ag_/" target="_blank" rel="noopener">Instagram</a>
+                        <a href="mailto:dressagomes.02@gmail.com">E-mail</a>
+                        <a class="footer-address" href="https://www.google.com/maps/search/?api=1&query=-7.219462,-39.319662" target="_blank" rel="noopener">
+                            <iconify-icon icon="solar:map-point-linear" stroke-width="1.5"></iconify-icon>
+                            Rua Senhora Santana, 969, Santa Tereza
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Instituto AG — Dra. Andressa Gomes · CREFITO 356314-F · Todos os direitos reservados.</p>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/instituto.ag_/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <iconify-icon icon="mdi:instagram"></iconify-icon>
+                    </a>
+                    <a href="https://wa.me/5588996443187" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <iconify-icon icon="mdi:whatsapp"></iconify-icon>
+                    </a>
+                    <a href="mailto:dressagomes.02@gmail.com" aria-label="E-mail">
+                        <iconify-icon icon="solar:letter-linear" stroke-width="1.5"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5588996443187" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco pelo WhatsApp" id="whatsapp-float">
+        <iconify-icon icon="mdi:whatsapp"></iconify-icon>
+    </a>
+
+    <!-- GSAP Animations -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        // Close on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Background Lines
+        gsap.from('.bg-line', {
+            scaleY: 0,
+            duration: 1.5,
+            ease: 'power4.out',
+            stagger: 0.15,
+            delay: 0.2
+        });
+
+        // Section fade in
+        gsap.utils.toArray('.section-animate').forEach((section, i) => {
+            gsap.to(section, {
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power2.out',
+                delay: i < 2 ? 0.3 + i * 0.2 : 0,
+                scrollTrigger: i >= 2 ? {
+                    trigger: section,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                } : undefined
+            });
+        });
+
+        // Reveal text
+        gsap.utils.toArray('.reveal-text').forEach(text => {
+            gsap.fromTo(text, 
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: text,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+
+        // Hero pill image subtle float
+        gsap.to('.pill-image', {
+            y: -8,
+            duration: 3,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1
+        });
+
+        // Stat numbers count up
+        gsap.utils.toArray('.stat-number').forEach(stat => {
+            const numEl = stat.querySelector('.stat-count');
+            const text = (numEl || stat.childNodes[0]).textContent.trim();
+            const num = parseInt(text);
+            if (!isNaN(num)) {
+                const obj = { val: 0 };
+                gsap.to(obj, {
+                    val: num,
+                    duration: 2,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: stat,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    },
+                    onUpdate: () => {
+                        const value = Math.round(obj.val);
+                        if (numEl) {
+                            numEl.textContent = value;
+                        } else {
+                            stat.childNodes[0].textContent = value;
+                        }
+                    }
+                });
+            }
+        });
+
+        // Image gradient show on desktop
+        if (window.innerWidth >= 768) {
+            document.querySelectorAll('.img-gradient').forEach(el => {
+                el.style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>
