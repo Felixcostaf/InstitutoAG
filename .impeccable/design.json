@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-20T11:07:21.8956235-03:00",
+  "title": "Design System: Instituto AG — Dra. Andressa Gomes",
+  "extensions": {
+    "colorMeta": {
+      "sand-bg": { "role": "neutral", "displayName": "Warm Sand", "canonical": "#EFECE5", "tonalRamp": ["#2A2621", "#4A4038", "#6B5C4F", "#8A7B68", "#A99A83", "#C4B49D", "#DFD6C6", "#EFECE5"] },
+      "sand-bg-alt": { "role": "neutral", "displayName": "Tonal Sand", "canonical": "#d6d0c2", "tonalRamp": ["#241f19", "#3c362c", "#544c3e", "#6d6351", "#877c68", "#a39983", "#c0b7a4", "#d6d0c2"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#292524", "tonalRamp": ["#0b0a0a", "#181616", "#262223", "#342f30", "#423c3d", "#514a4b", "#605858", "#6f6666"] },
+      "stone": { "role": "neutral", "displayName": "Stone", "canonical": "#78716c", "tonalRamp": ["#262220", "#3c3734", "#524c49", "#68625e", "#7e7773", "#948d89", "#aaa39f", "#c0bab6"] },
+      "dust": { "role": "neutral", "displayName": "Dust", "canonical": "#a8a29e", "tonalRamp": ["#332f2d", "#4d4845", "#67615e", "#817b77", "#9b9490", "#b5aeab", "#cfc9c6", "#e9e4e1"] },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "#a8a29e", "tonalRamp": ["#332f2d", "#4d4845", "#67615e", "#817b77", "#9b9490", "#b5aeab", "#cfc9c6", "#e9e4e1"] },
+      "antique-gold": { "role": "primary", "displayName": "Antique Gold", "canonical": "#c5a55a", "tonalRamp": ["#2b2413", "#46391e", "#614d28", "#7c6233", "#98773e", "#b38d49", "#b8a263", "#c5a55a"] },
+      "antique-gold-light": { "role": "primary", "displayName": "Antique Gold Light", "canonical": "#d4bb7a", "tonalRamp": ["#2e2617", "#4a3f23", "#655630", "#816e3d", "#9c864a", "#b89f58", "#ccb26b", "#d4bb7a"] },
+      "antique-gold-dark": { "role": "primary", "displayName": "Antique Gold Dark", "canonical": "#a88d3e", "tonalRamp": ["#241c0f", "#3c3118", "#534522", "#6a592c", "#816d37", "#988141", "#af964b", "#c6aa55"] },
+      "dark-roast": { "role": "neutral", "displayName": "Dark Roast", "canonical": "#2A2621", "tonalRamp": ["#0c0a09", "#171411", "#221e1a", "#2d2823", "#38322c", "#433c36", "#4e463f", "#595049"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero title and oversized statements only." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles." },
+      "title": { "displayName": "Title", "purpose": "Service and card titles, feature headings, event names." },
+      "body": { "displayName": "Body", "purpose": "Supporting paragraphs and list content." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows, tags, stat labels, nav, footer titles, meta." }
+    },
+    "shadows": [
+      { "name": "ambient-low", "value": "0 8px 24px -4px rgba(41,37,36,0.2)", "purpose": "Primary hero button lift." },
+      { "name": "soft-portrait", "value": "0 20px 40px -8px rgba(41,37,36,0.15)", "purpose": "Hero pill portrait." },
+      { "name": "deep-band", "value": "0 25px 50px -12px rgba(0,0,0,0.3)", "purpose": "Dark-roast workshops container." },
+      { "name": "float-glow", "value": "0 8px 24px rgba(37,211,102,0.35)", "purpose": "Fixed WhatsApp button." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.2, 0, 0.2, 1)", "purpose": "Default state transitions." },
+      { "name": "ease-power3", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Reveal and entrance motion (GSAP power3.out)." },
+      { "name": "hover-scale", "value": "1.05", "purpose": "Primary button hover scale." },
+      { "name": "image-zoom", "value": "1.5s ease-out", "purpose": "Service and event image scale on hover." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main booking CTA — pill, ink fill, uppercase tracked label.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Agendar Avaliação<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M7 17L17 7M17 7H9M17 7V15\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 12px; background: #292524; color: #EFECE5; font-family: Inter, sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; padding: 16px 32px; border-radius: 999px; border: none; cursor: pointer; box-shadow: 0 8px 24px -4px rgba(41,37,36,0.2); transition: background 0.5s, transform 0.5s; text-decoration: none; } .ds-btn-primary svg { transition: transform 0.3s; } .ds-btn-primary:hover { background: #a88d3e; transform: scale(1.05); } .ds-btn-primary:hover svg { transform: translate(2px, -2px); } .ds-btn-primary:focus-visible { outline: 2px solid #c5a55a; outline-offset: 2px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary pricing CTA — transparent with hairline border, sharp corners.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">Agendar</a>",
+      "css": ".ds-btn-outline { display: block; text-align: center; border: 1px solid rgba(168,162,158,0.35); background: transparent; color: #292524; font-family: Inter, sans-serif; font-size: 17px; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; padding: 16px; border-radius: 4px; text-decoration: none; transition: all 0.3s; } .ds-btn-outline:hover { border-color: #292524; background: #292524; color: #EFECE5; } .ds-btn-outline:focus-visible { outline: 2px solid #c5a55a; outline-offset: 2px; }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Top bar with round logo, uppercase tracked links, and gold CTA.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"#\"><img src=\"\" alt=\"\"><span>Instituto AG</span></a><div class=\"ds-nav-links\"><a href=\"#\">Início</a><a href=\"#\">Serviços</a></div><a class=\"ds-nav-cta\" href=\"#\">Agendar<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M7 17L17 7M17 7H9M17 7V15\"/></svg></a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; padding: 24px 32px; border-bottom: 1px solid rgba(168,162,158,0.35); font-family: Inter, sans-serif; } .ds-nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #292524; } .ds-nav-brand img { width: 126px; height: 126px; border-radius: 50%; object-fit: cover; } .ds-nav-brand span { font-size: 18px; font-weight: 300; letter-spacing: -0.03em; text-transform: uppercase; } .ds-nav-links { display: flex; gap: 40px; } .ds-nav-links a { font-size: 17px; font-weight: 300; text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; color: #78716c; transition: color 0.3s; } .ds-nav-links a:hover { color: #292524; } .ds-nav-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 17px; font-weight: 300; text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; color: #c5a55a; }"
+    },
+    {
+      "name": "Price Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Treatment plan card — flat, hairline-bordered, discount highlight.",
+      "html": "<div class=\"ds-price-card\"><h3>Tratamento</h3><span class=\"ds-tier\">Pacote de sessões</span><div class=\"ds-price\"><span class=\"ds-from\">Desconto de</span><span class=\"ds-amount\">10%</span></div><ul class=\"ds-features\"><li><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M5 13l4 4L19 7\"/></svg>Acompanhamento contínuo</li></ul></div>",
+      "css": ".ds-price-card { display: flex; flex-direction: column; padding: 32px; border: 1px solid rgba(168,162,158,0.35); border-radius: 20px; background: #EFECE5; font-family: Inter, sans-serif; transition: background 0.5s; } .ds-price-card:hover { background: rgba(214,208,194,0.2); } .ds-price-card h3 { font-size: 28px; font-weight: 300; letter-spacing: -0.02em; color: #292524; margin-bottom: 8px; } .ds-tier { font-size: 14px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.15em; color: #78716c; margin-bottom: 48px; } .ds-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 40px; } .ds-from { font-size: 17px; font-weight: 300; color: #78716c; } .ds-amount { font-size: 48px; font-weight: 300; letter-spacing: -0.03em; color: #292524; } .ds-features { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; } .ds-features li { display: flex; align-items: flex-start; gap: 12px; font-size: 17px; font-weight: 300; color: #78716c; } .ds-features svg { color: #c5a55a; flex-shrink: 0; margin-top: 1px; }"
+    },
+    {
+      "name": "Featured Price Card",
+      "kind": "card",
+      "refersTo": "card-featured",
+      "description": "Emphasized treatment tier — ink fill with gold glow.",
+      "html": "<div class=\"ds-price-card ds-price-featured\"><h3>Tratamento</h3><span class=\"ds-tier\">Pacote de sessões</span><div class=\"ds-price\"><span class=\"ds-from\">Desconto de</span><span class=\"ds-amount\">10%</span></div><ul class=\"ds-features\"><li><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M5 13l4 4L19 7\"/></svg>Acompanhamento contínuo</li></ul></div>",
+      "css": ".ds-price-featured { background: #292524; position: relative; overflow: hidden; } .ds-price-featured::before { content: ''; position: absolute; top: 0; right: 0; width: 128px; height: 128px; background: rgba(197,165,90,0.15); filter: blur(48px); border-radius: 50%; } .ds-price-featured h3, .ds-price-featured .ds-amount { color: #EFECE5; } .ds-price-featured .ds-tier { color: #a8a29e; } .ds-price-featured .ds-from { color: #a8a29e; } .ds-price-featured .ds-features li { color: rgba(214,208,194,0.7); } .ds-price-featured .ds-features svg { color: #a88d3e; }"
+    },
+    {
+      "name": "Testimonial Card",
+      "kind": "card",
+      "refersTo": null,
+      "description": "Patient quote card — flat, grayscale portrait, inverts on hover.",
+      "html": "<div class=\"ds-testimonial\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M8 10H6c-1 0-2-.4-2.6-1C2.6 8.3 3 7 4.4 6.4 5 6.2 5.7 6 6.4 6M12 10h-2c-1 0-2-.4-2.6-1C6.6 8.3 7 7 8.4 6.4 9 6.2 9.7 6 10.4 6M14 4h.2c1 0 2 .6 2.6 1.4.5.7.6 1.8 0 2.6-1.2 1.6-3.4 2.2-5.4 2.2M14 14l-2.8 2.2a1 1 0 0 0-.2 1.4c.3.5 1 .7 1.5.4L15 17M14 14l2.6 1.8c.5.4 1.2.2 1.5-.3a1 1 0 0 0-.2-1.4L15 13\"/></svg><p class=\"ds-quote\">\"Fui muito bem acolhida e hoje estou bem melhor.\"</p><div class=\"ds-reviewer\"><img src=\"\" alt=\"\"><span class=\"ds-name\">Fátima Silva</span><span class=\"ds-role\">Paciente — Joelho</span></div></div>",
+      "css": ".ds-testimonial { display: flex; flex-direction: column; justify-content: space-between; padding: 32px; background: #EFECE5; font-family: Inter, sans-serif; border-right: 1px solid rgba(168,162,158,0.35); border-bottom: 1px solid rgba(168,162,158,0.35); transition: all 0.5s; } .ds-testimonial:hover { background: #292524; } .ds-testimonial svg { font-size: 28px; color: rgba(168,162,158,0.4); margin-bottom: 32px; } .ds-quote { font-size: 17px; font-weight: 300; color: #78716c; line-height: 1.65; margin-bottom: 48px; transition: color 0.5s; } .ds-testimonial:hover .ds-quote { color: rgba(214,208,194,0.8); } .ds-reviewer { display: flex; flex-direction: column; gap: 4px; } .ds-reviewer img { width: 63px; height: 63px; border-radius: 50%; object-fit: cover; filter: grayscale(1); opacity: 0.8; margin-bottom: 8px; transition: opacity 0.5s; } .ds-testimonial:hover .ds-reviewer img { opacity: 1; filter: none; } .ds-name { font-size: 14px; font-weight: 300; color: #292524; transition: color 0.5s; } .ds-testimonial:hover .ds-name { color: #EFECE5; } .ds-role { font-size: 11px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.12em; color: #78716c; }"
+    },
+    {
+      "name": "Hero Pill Portrait",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Signature vertical pill-framed portrait with soft shadow and subtle float.",
+      "html": "<div class=\"ds-pill\"><img src=\"\" alt=\"Dra. Andressa Gomes\"></div>",
+      "css": ".ds-pill { width: 280px; aspect-ratio: 1 / 1.6; border-radius: 999px; overflow: hidden; position: relative; box-shadow: 0 20px 40px -8px rgba(41,37,36,0.15); border: 1px solid rgba(197,165,90,0.2); } .ds-pill img { width: 100%; height: 100%; object-fit: cover; }"
+    },
+    {
+      "name": "Newsletter Input",
+      "kind": "input",
+      "refersTo": null,
+      "description": "Underline-only email field with arrow submit.",
+      "html": "<div class=\"ds-email\"><input type=\"email\" placeholder=\"Seu melhor e-mail\"><button aria-label=\"Inscrever-se\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button></div>",
+      "css": ".ds-email { display: flex; } .ds-email input { background: transparent; border: none; border-bottom: 1px solid rgba(168,162,158,0.35); padding: 12px 0; width: 100%; font-size: 14px; font-weight: 300; font-family: Inter, sans-serif; color: #292524; outline: none; transition: border-color 0.3s; } .ds-email input::placeholder { color: #a8a29e; } .ds-email input:focus { border-color: #292524; } .ds-email button { border: none; border-bottom: 1px solid rgba(168,162,158,0.35); background: transparent; padding: 12px 16px; cursor: pointer; color: #292524; transition: border-color 0.3s; } .ds-email button:hover { border-color: #292524; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Warm Editorial Clinic",
+    "overview": "Instituto AG reads like a calm, well-set health journal printed on warm paper — a physiotherapy practice expressed through an editorial grid of hairline rules, generous whitespace, and a restrained antique-gold accent. The aesthetic is humanized and approachable without losing professional precision: type runs light and airy, surfaces stay flat and paper-warm, and the only color that sings is the muted gold used sparingly for icons, highlights, and emphasis.\n\nDepth is felt through tonal layering and structure rather than shadow. Column borders, section rules, and the single deep 'dark roast' band do the work of separating content. The result is a measured, confident page that lets the clinician's credibility and patient stories hold the attention — nothing competes with the content.",
+    "keyCharacteristics": [
+      "Flat-by-default, tonal layering; shadows are rare and small.",
+      "Hairline border grid defines every section and column.",
+      "Very light Inter weights (200–300) at large display sizes.",
+      "Antique gold used sparingly — accents, icons, and emphasis only.",
+      "Pill-shaped images and buttons soften the editorial grid with warmth.",
+      "One deep dark-roast section provides the only high-contrast band."
+    ],
+    "rules": [
+      { "name": "The Sparing Gold Rule", "body": "Antique gold appears on a small share of any screen — icons, one inline highlight, small numerals. Its rarity is what makes it feel like an accent, not a theme. Never flood a section with it.", "section": "colors" },
+      { "name": "The Warm Paper Rule", "body": "All neutrals lean warm. No cool grays or blue-tinged whites. If a neutral looks cold on the page, it is wrong for this system.", "section": "colors" },
+      { "name": "The Light-First Rule", "body": "Large display and headline text is set at 200–300 weight. Do not bump body or headlines to heavier weights (400–500) for emphasis; the system relies on size, tracking, and case changes instead.", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "Surfaces are flat and paper-toned at rest. Elevation appears only as a hover or foreground response — a gentle shadow on an interactive element, never ambient depth on resting surfaces.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep surfaces flat, paper-toned (Warm Sand / Tonal Sand), with 1px hairline borders defining structure.",
+      "Do reserve Antique Gold for accents — icons, one inline headline highlight, small numerals — and keep it sparse.",
+      "Do set display and headline text at Inter 200–300 with tight negative tracking and uppercase; lean on size, not weight, for hierarchy.",
+      "Do use uppercase, 0.15em-tracked labels for eyebrows, tags, nav, and stat labels.",
+      "Do soften key imagery with the pill (999px) silhouette — portrait, featured event, buttons.",
+      "Do keep all neutrals warm; never introduce cool grays or blue-tinted whites.",
+      "Do use hairline borders between grid cells rather than floating cards for section content."
+    ],
+    "donts": [
+      "Don't flood a section with Antique Gold; its rarity is the point.",
+      "Don't add heavy shadows or ambient depth to resting surfaces — depth is tonal and structural.",
+      "Don't use heavy (400–600) weights for headlines or body; the system is light-first.",
+      "Don't set labels in sentence case or loose tracking; the tracked uppercase voice is structural.",
+      "Don't introduce a second display or body font family; Inter alone carries the hierarchy.",
+      "Don't cool the palette — a blue or gray paper would break the warm editorial foundation."
+    ]
+  }
+}

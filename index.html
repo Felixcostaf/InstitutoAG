@@ -120,6 +120,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 24px 32px;
+            padding-top: max(24px, env(safe-area-inset-top));
             border-bottom: 1px solid var(--border);
         }
         .nav-brand {
@@ -220,6 +221,23 @@
             .mobile-menu-btn { display: none; }
         }
 
+        /* Tablet & small desktop: keep nav within bounds */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .nav { padding: 20px 24px; }
+            .nav-brand img { height: 64px; width: 64px; }
+            .nav-brand-name { font-size: 16px; }
+            .nav-brand-sub { font-size: 12px; letter-spacing: 0.12em; }
+            .nav-links { gap: 24px; }
+            .nav-links a { font-size: 14px; letter-spacing: 0.12em; }
+            .nav-cta { font-size: 14px; letter-spacing: 0.12em; }
+        }
+        @media (min-width: 1024px) and (max-width: 1279px) {
+            .nav { padding: 22px 28px; }
+            .nav-links { gap: 28px; }
+            .nav-links a { font-size: 15px; letter-spacing: 0.12em; }
+            .nav-cta { font-size: 15px; letter-spacing: 0.12em; }
+        }
+
         /* ===== HERO ===== */
         .hero {
             display: grid;
@@ -236,7 +254,7 @@
         }
         .hero-left-top { padding: 32px 32px 64px; }
         .hero-title {
-            font-size: clamp(52px, 10vw, 120px);
+            font-size: clamp(40px, 10vw, 120px);
             font-weight: 200;
             letter-spacing: -0.04em;
             line-height: 0.9;
@@ -389,7 +407,7 @@
         @media (min-width: 768px) {
             .hero-bottom { flex-direction: row; align-items: center; }
         }
-        @media (min-width: 1024px) {
+        @media (min-width: 768px) {
             .hero {
                 grid-template-columns: 2fr 1fr;
                 grid-template-rows: auto auto;
@@ -406,6 +424,11 @@
                 display: grid;
                 grid-template-rows: 1fr auto;
             }
+            .hero-left-top { padding: 48px 32px 96px; }
+            .hero-bottom { border-top: 1px solid var(--border); }
+            .hero-visual { padding: 40px; }
+        }
+        @media (min-width: 1024px) {
             .hero-left-top { padding: 64px 32px 128px; }
             .hero-bottom { border-top: 1px solid var(--border); }
             .hero-visual { padding: 48px; }
@@ -1041,6 +1064,7 @@
             margin-bottom: 40px;
             position: relative;
             z-index: 10;
+            flex-wrap: wrap;
         }
         .price-value .from {
             font-size: 17px;
@@ -1373,6 +1397,7 @@
         /* ===== FOOTER ===== */
         .footer {
             padding: 32px;
+            padding-bottom: max(32px, env(safe-area-inset-bottom));
             display: flex;
             flex-direction: column;
             gap: 48px;
@@ -1446,6 +1471,7 @@
         .footer-links {
             display: flex;
             gap: 64px;
+            flex-wrap: wrap;
         }
         .footer-col {
             display: flex;
@@ -1486,6 +1512,22 @@
             color: var(--gold);
             flex-shrink: 0;
             margin-top: 2px;
+        }
+        .footer-col .footer-contact {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-col .footer-contact:hover { color: var(--text-primary); }
+        .footer-col .footer-contact iconify-icon {
+            font-size: 22px;
+            color: var(--gold);
+            flex-shrink: 0;
         }
 
         .footer-bottom {
@@ -1937,8 +1979,9 @@
                     <h3>Avaliação</h3>
                     <p class="tier-desc">Sessão inicial completa</p>
                     <div class="price-value">
-                        <span class="from">Desconto de</span>
+                        <span class="from">Celebre nossa inauguração com</span>
                         <span class="amount">5%</span>
+                        <span class="from">de desconto!</span>
                     </div>
                     <ul class="price-features">
                         <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Anamnese detalhada</li>
@@ -1955,8 +1998,9 @@
                     <h3>Tratamento</h3>
                     <p class="tier-desc">Pacote de sessões</p>
                     <div class="price-value">
-                        <span class="from">Desconto de</span>
+                        <span class="from">Celebre nossa inauguração com</span>
                         <span class="amount">10%</span>
+                        <span class="from">de desconto!</span>
                     </div>
                     <ul class="price-features">
                         <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Terapia manual especializada</li>
@@ -1972,8 +2016,9 @@
                     <h3>Premium</h3>
                     <p class="tier-desc">Atendimento domiciliar</p>
                     <div class="price-value">
-                        <span class="from">Desconto de</span>
+                        <span class="from">Celebre nossa inauguração com</span>
                         <span class="amount">15%</span>
+                        <span class="from">de desconto!</span>
                     </div>
                     <ul class="price-features">
                         <li><iconify-icon icon="solar:check-circle-linear" stroke-width="1.5"></iconify-icon> Atendimento em domicílio</li>
@@ -2128,9 +2173,18 @@
                     </div>
                     <div class="footer-col">
                         <span class="footer-col-title">Contato</span>
-                        <a href="https://wa.me/5588996443187" target="_blank" rel="noopener">WhatsApp</a>
-                        <a href="https://www.instagram.com/instituto.ag_/" target="_blank" rel="noopener">Instagram</a>
-                        <a href="mailto:dressagomes.02@gmail.com">E-mail</a>
+                        <a class="footer-contact" href="https://wa.me/5588996443187" target="_blank" rel="noopener">
+                            <iconify-icon icon="mdi:whatsapp" stroke-width="1.5"></iconify-icon>
+                            WhatsApp
+                        </a>
+                        <a class="footer-contact" href="https://www.instagram.com/instituto.ag_/" target="_blank" rel="noopener">
+                            <iconify-icon icon="mdi:instagram" stroke-width="1.5"></iconify-icon>
+                            Instagram
+                        </a>
+                        <a class="footer-contact" href="mailto:dressagomes.02@gmail.com">
+                            <iconify-icon icon="solar:letter-linear" stroke-width="1.5"></iconify-icon>
+                            E-mail
+                        </a>
                         <a class="footer-address" href="https://www.google.com/maps/search/?api=1&query=-7.219462,-39.319662" target="_blank" rel="noopener">
                             <iconify-icon icon="solar:map-point-linear" stroke-width="1.5"></iconify-icon>
                             Rua Senhora Santana, 969, Santa Tereza
